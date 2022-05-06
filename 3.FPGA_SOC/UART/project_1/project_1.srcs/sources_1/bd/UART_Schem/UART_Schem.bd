@@ -1,0 +1,379 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x51596E01D126ECBE",
+      "device": "xc7z020clg400-1",
+      "gen_directory": "../../../../project_1.gen/sources_1/bd/UART_Schem",
+      "name": "UART_Schem",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2021.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "baud_gen_0": "",
+      "uart_rx_0": "",
+      "uart_tx_0": "",
+      "fifo_rx": "",
+      "fifo_tx": ""
+    },
+    "ports": {
+      "rd_uart": {
+        "direction": "I"
+      },
+      "rx": {
+        "direction": "I"
+      },
+      "clk": {
+        "direction": "I"
+      },
+      "reset": {
+        "direction": "I"
+      },
+      "wr_uart": {
+        "direction": "I"
+      },
+      "w_data": {
+        "direction": "I",
+        "left": "7",
+        "right": "0"
+      },
+      "rx_empty": {
+        "direction": "O"
+      },
+      "r_data": {
+        "direction": "O",
+        "left": "7",
+        "right": "0"
+      },
+      "tx_full": {
+        "direction": "O"
+      },
+      "tx": {
+        "direction": "O"
+      }
+    },
+    "components": {
+      "baud_gen_0": {
+        "vlnv": "xilinx.com:module_ref:baud_gen:1.0",
+        "xci_name": "UART_Schem_baud_gen_0_0",
+        "xci_path": "ip\\UART_Schem_baud_gen_0_0\\UART_Schem_baud_gen_0_0.xci",
+        "inst_hier_path": "baud_gen_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "baud_gen",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "reset",
+                "value_src": "constant"
+              }
+            }
+          },
+          "reset": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "baud_ticks": {
+            "direction": "O"
+          }
+        }
+      },
+      "uart_rx_0": {
+        "vlnv": "xilinx.com:module_ref:uart_rx:1.0",
+        "xci_name": "UART_Schem_uart_rx_0_0",
+        "xci_path": "ip\\UART_Schem_uart_rx_0_0\\UART_Schem_uart_rx_0_0.xci",
+        "inst_hier_path": "uart_rx_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "uart_rx",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "reset",
+                "value_src": "constant"
+              }
+            }
+          },
+          "reset": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "rx": {
+            "direction": "I"
+          },
+          "baud_rate": {
+            "direction": "I"
+          },
+          "rx_done_tick": {
+            "direction": "O"
+          },
+          "d_out": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          }
+        }
+      },
+      "uart_tx_0": {
+        "vlnv": "xilinx.com:module_ref:uart_tx:1.0",
+        "xci_name": "UART_Schem_uart_tx_0_0",
+        "xci_path": "ip\\UART_Schem_uart_tx_0_0\\UART_Schem_uart_tx_0_0.xci",
+        "inst_hier_path": "uart_tx_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "uart_tx",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "reset",
+                "value_src": "constant"
+              }
+            }
+          },
+          "reset": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "tx_start": {
+            "direction": "I"
+          },
+          "baud_rate": {
+            "direction": "I"
+          },
+          "d_in": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "tx_done_tick": {
+            "direction": "O"
+          },
+          "tx": {
+            "direction": "O"
+          }
+        }
+      },
+      "fifo_rx": {
+        "vlnv": "xilinx.com:module_ref:fifo:1.0",
+        "xci_name": "UART_Schem_fifo_0_1",
+        "xci_path": "ip\\UART_Schem_fifo_0_1\\UART_Schem_fifo_0_1.xci",
+        "inst_hier_path": "fifo_rx",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "fifo",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "reset",
+                "value_src": "constant"
+              }
+            }
+          },
+          "reset": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "read": {
+            "direction": "I"
+          },
+          "write": {
+            "direction": "I"
+          },
+          "write_data": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "empty": {
+            "direction": "O"
+          },
+          "full": {
+            "direction": "O"
+          },
+          "read_data": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          }
+        }
+      },
+      "fifo_tx": {
+        "vlnv": "xilinx.com:module_ref:fifo:1.0",
+        "xci_name": "UART_Schem_fifo_0_2",
+        "xci_path": "ip\\UART_Schem_fifo_0_2\\UART_Schem_fifo_0_2.xci",
+        "inst_hier_path": "fifo_tx",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "fifo",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "reset",
+                "value_src": "constant"
+              }
+            }
+          },
+          "reset": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "read": {
+            "direction": "I"
+          },
+          "write": {
+            "direction": "I"
+          },
+          "write_data": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "empty": {
+            "direction": "O"
+          },
+          "full": {
+            "direction": "O"
+          },
+          "read_data": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          }
+        }
+      }
+    },
+    "nets": {
+      "baud_gen_0_baud_ticks": {
+        "ports": [
+          "baud_gen_0/baud_ticks",
+          "uart_rx_0/baud_rate",
+          "uart_tx_0/baud_rate"
+        ]
+      },
+      "clk_1": {
+        "ports": [
+          "clk",
+          "uart_rx_0/clk",
+          "baud_gen_0/clk",
+          "uart_tx_0/clk",
+          "fifo_tx/clk",
+          "fifo_rx/clk"
+        ]
+      },
+      "fifo_rx_empty": {
+        "ports": [
+          "fifo_rx/empty",
+          "rx_empty"
+        ]
+      },
+      "fifo_rx_read_data": {
+        "ports": [
+          "fifo_rx/read_data",
+          "r_data"
+        ]
+      },
+      "fifo_tx_empty": {
+        "ports": [
+          "fifo_tx/empty",
+          "uart_tx_0/tx_start"
+        ]
+      },
+      "fifo_tx_full": {
+        "ports": [
+          "fifo_tx/full",
+          "tx_full"
+        ]
+      },
+      "fifo_tx_read_data": {
+        "ports": [
+          "fifo_tx/read_data",
+          "uart_tx_0/d_in"
+        ]
+      },
+      "rd_uart_1": {
+        "ports": [
+          "rd_uart",
+          "fifo_rx/read"
+        ]
+      },
+      "reset_1": {
+        "ports": [
+          "reset",
+          "baud_gen_0/reset",
+          "fifo_tx/reset",
+          "uart_rx_0/reset",
+          "uart_tx_0/reset",
+          "fifo_rx/reset"
+        ]
+      },
+      "rx_1": {
+        "ports": [
+          "rx",
+          "uart_rx_0/rx"
+        ]
+      },
+      "uart_rx_0_d_out": {
+        "ports": [
+          "uart_rx_0/d_out",
+          "fifo_rx/write_data"
+        ]
+      },
+      "uart_rx_0_rx_done_tick": {
+        "ports": [
+          "uart_rx_0/rx_done_tick",
+          "fifo_rx/write"
+        ]
+      },
+      "uart_tx_0_tx": {
+        "ports": [
+          "uart_tx_0/tx",
+          "tx"
+        ]
+      },
+      "uart_tx_0_tx_done_tick": {
+        "ports": [
+          "uart_tx_0/tx_done_tick",
+          "fifo_tx/read"
+        ]
+      },
+      "w_data_1": {
+        "ports": [
+          "w_data",
+          "fifo_tx/write_data"
+        ]
+      },
+      "wr_uart_1": {
+        "ports": [
+          "wr_uart",
+          "fifo_tx/write"
+        ]
+      }
+    }
+  }
+}
