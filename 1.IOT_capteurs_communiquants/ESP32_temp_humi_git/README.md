@@ -2,7 +2,7 @@ Dossier platformio pour injecter un .bin sur un ESP_32 dev kit v4
 
 la dev kit peut s'alimenter par batterie sur le 3v3 avec une alim régulée (du LiPo ou LiFePo) ou sur le via le régulateur du V_IN (5 à 12v). Idéalement il faudrais privilégier le 3v3 (moins de perte) mais j'ai peur que sans régu ça se ressente, il faut que je fasse des testes pour voire une corrélation baisses de tension/valeurs et compenser le tout.
 
-J'ai fabriqué un Shield home-made mais je n'ai pas de batterie pour aller sur le 3v3, je vais me contenter d'une pile E 9v sur le 5v car c'est ce que j'ai sous la main, ça permettra de me donner déja un ordre d'idée sur la consomation.
+J'ai fabriqué un Shield home-made mais je n'ai pas de batterie pour aller sur le 3v3, je vais me contenter d'une pile E 9v sur le 5v car c'est ce que j'ai sous la main, ça permettra de me donner déja un ordre d'idée sur la consomation. à l'aide d'un pont diviseur je vais venir verifier la tension de la pile pour ne pas que ça chute de trop.
 
 J'ai pour ce projet deux capteurs, un capteur d'humidité ambiante+température (DHT22) et le second humidité dans le sol(pas trouvé de référence je laisse le lien de la page).
 

@@ -7,19 +7,6 @@ def angle_to_percent (angle) :
     if angle > 180 or angle < 0 :
         return False
     
-    # d'après la datasheet du sg90 et du mg90s
-    # 1ms pulse for -90(ou 0) degree (LEFT)
-    # 1.5ms pulse for 0(ou 90) degree (MIDDLE)
-    # 2ms pulse for 90(ou 180) degree (RIGHT)
-
-    # donc pour du 50hz (20ms)
-    # duty cycle pour 0 degre = (1/20)*100 = 5%
-    # duty cycle pour 90 degres = (1.5/20)*100 = 7.5% 
-    # duty cycle pour 180 degres = (2/20)*100 = 10% 
-
-    # ça c'est la théorie, en pratique les résultats ne corresponde pas
-    #pour ma part j'ai évalué (approximativement) le 0° à 2.5% et le 180° à 12.5%
-
     start = 2.5
     end = 12.55
     ratio = (end - start)/180 # Calcul du ratio pour passer d'angle à %
