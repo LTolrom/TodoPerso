@@ -14,7 +14,7 @@ Réalisé sur la jetson xavier NX (carte qui sera utilisée pendant le M2). Comm
 
 **3.FPGA/SOC:**
 
-Réalisé sur une Zybo Z7020, je suis très fan des FPGA pour leurs polyvalences, leurs efficiences (en terme de puissance, contrainte temporel et consommation énergétique) ainsi que de devoir travailler à un faible niveau d'abstraction et donc comprendre l'électronique numérique bit par bit. Je vais pour m'entraîner configurer quatre protocoles réseaux sans fils (UART,I²C,CAN,SPI) ainsi que quelques machines à états. J'aimerais par la suite m'exercer à la vision par ordinateur sur FPGA.
+Réalisé sur une Zybo Z7020, je suis très fan des FPGA pour leurs polyvalences, leurs efficiences (en terme de puissance, contrainte temporel et consommation énergétique) ainsi que de devoir travailler à un faible niveau d'abstraction et donc comprendre l'électronique numérique bit par bit. En fpga/VHDL je pense coder quelques machines à état et faire de la description de code déja existant (genre protocole de com série UART,i²C,SPI,CAN)
 
 
 ![PI+Jet+Zyb](https://user-images.githubusercontent.com/94114676/166684215-9302ad22-f1e8-4103-8958-482a12fbe210.jpg)
