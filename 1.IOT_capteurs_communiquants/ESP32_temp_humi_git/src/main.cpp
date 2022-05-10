@@ -8,17 +8,17 @@
         
 
 
-const char* mqtt_server = ""; 
-const char* ssid = "";
-const char* password = "";
+const char* mqtt_server = "192.168.1.21"; //mqtt server
+const char* ssid = "SFR_MLK";
+const char* password = "b0b&PAMALAplagedsle78";
 
-#define brocheDeBranchementDHT 33
-#define typeDeDHT DHT22     
-DHT dht(brocheDeBranchementDHT, typeDeDHT);
+#define DHTPIN 32
+#define DHTTYPE DHT22    
+DHT dht(DHTPIN, DHTTYPE);
 
-#define PIN_capteur_humi_soil 32
+#define PIN_capteur_humi_soil 33
 
-#define PIN_U_BAT 27
+#define PIN_U_BAT 13
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -31,7 +31,7 @@ float tempC=0;
 float humiValueSoil=0;
 float humiValueAmb=0;
 float uBat=0;
-long timeMark=0;
+float timeMark=0;
 long dt=0;
 
 void setup_wifi() {
@@ -93,8 +93,6 @@ void reconnect() {
 }
 
 void setup() {
-  pinMode(PIN_capteur_humi_soil, INPUT);
-  pinMode(brocheDeBranchementDHT, INPUT); 
   pinMode(PIN_U_BAT, INPUT); 
   Serial.begin(115200);
   setup_wifi();
@@ -102,9 +100,9 @@ void setup() {
   client.setCallback(callback);
 }
 
-void publish(float Value, char* topic){
+void publish(float Value, char topic[]){
   
-  snprintf (msg, MSG_BUFFER_SIZE, "%ld%", Value);
+  snprintf (msg, MSG_BUFFER_SIZE, "%f", Value);
   Serial.print(topic);
   Serial.print(": ");
   Serial.println(msg);
@@ -114,31 +112,38 @@ void publish(float Value, char* topic){
 
 void loop() {
 timeMark=millis();
+
+// tempC=0;
+// humiValueSoil=0;
+// humiValueAmb=0;
+// uBat=0;
+
+//WiFi.disconnect();
+
+
+humiValueSoil =analogRead(PIN_capteur_humi_soil);
+humiValueAmb = dht.readHumidity();
+tempC = dht.readTemperature();
+//uBat=uBat +analogRead(PIN_U_BAT)/5;
+Serial.println("humiValue: ");
+Serial.println(humiValueAmb);
 if (!client.connected()) {
   reconnect();
   }
 client.loop();
 
-tempC=0;
-humiValueSoil=0;
-humiValueAmb=0;
-uBat=0;
 
-for (int i=0; i<4; i++){
-  humiValueSoil =humiValueSoil + analogRead(PIN_capteur_humi_soil)*100/(4095*5);
-  humiValueAmb =humiValueAmb + dht.readHumidity()/5;
-  tempC = tempC + dht.readTemperature()/5;
-  uBat=uBat +analogRead(PIN_U_BAT)/5;
-  delay(1000); //vraiment nécessaire?
-}
+
+
   publish(humiValueSoil,"ESP/HUMI/SOIL");
   publish(humiValueAmb,"ESP/HUMI/AMBIANT");
   publish(tempC,"ESP/TEMP");
-  publish(uBat,"ESP/UBATTERIE"); //8v min
-  dt=timeMark-millis();
-  publish(dt,"ESP/time");
+  //publish(uBat,"ESP/U_BAT"); //8v min
+  dt=millis()-timeMark;
+  publish(dt,"ESP/TIME_CYCLE");
+  delay(1000);
+  esp_sleep_enable_timer_wakeup(10000000); //en µs
   esp_deep_sleep_start();
-  esp_sleep_enable_timer_wakeup(5*60*1000-dt);
 
 
 }
