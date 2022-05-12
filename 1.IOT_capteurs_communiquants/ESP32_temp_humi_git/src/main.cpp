@@ -8,9 +8,9 @@
         
 
 
-const char* mqtt_server = "192.168.1.21"; //mqtt server
-const char* ssid = "SFR_MLK";
-const char* password = "b0b&PAMALAplagedsle78";
+const char* mqtt_server = ""; //mqtt server
+const char* ssid = "";
+const char* password = "";
 
 #define DHTPIN 32
 #define DHTTYPE DHT22    
@@ -111,22 +111,27 @@ void publish(float Value, char topic[]){
 
 
 void loop() {
+
 timeMark=millis();
 
-// tempC=0;
-// humiValueSoil=0;
-// humiValueAmb=0;
-// uBat=0;
+tempC=0;
+humiValueSoil=0;
+humiValueAmb=0;
+uBat=0;
 
-//WiFi.disconnect();
+WiFi.disconnect(true);  // Disconnect from the network
+WiFi.mode(WIFI_OFF);
 
 
 humiValueSoil =analogRead(PIN_capteur_humi_soil);
 humiValueAmb = dht.readHumidity();
 tempC = dht.readTemperature();
-//uBat=uBat +analogRead(PIN_U_BAT)/5;
+uBat=uBat +analogRead(PIN_U_BAT)/5;
 Serial.println("humiValue: ");
 Serial.println(humiValueAmb);
+
+setup_wifi();
+
 if (!client.connected()) {
   reconnect();
   }
@@ -138,10 +143,14 @@ client.loop();
   publish(humiValueSoil,"ESP/HUMI/SOIL");
   publish(humiValueAmb,"ESP/HUMI/AMBIANT");
   publish(tempC,"ESP/TEMP");
-  //publish(uBat,"ESP/U_BAT"); //8v min
+  publish(uBat,"ESP/U_BAT"); //8v min
+
   dt=millis()-timeMark;
+
   publish(dt,"ESP/TIME_CYCLE");
-  delay(1000);
+
+  delay(10);
+  
   esp_sleep_enable_timer_wakeup(10000000); //en µs
   esp_deep_sleep_start();
 
