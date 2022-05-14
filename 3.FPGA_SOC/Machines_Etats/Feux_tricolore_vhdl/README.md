@@ -12,6 +12,8 @@ nouveau véhicule se présente sur la route de campagne.
 pendant environ 5 secondes, puis feu rouge pour les deux voies pendant 5 secondes 
 
 soit:
+
+
 ![Feux_diagramme.PNG](Feux_diagramme.PNG)
 
 avec :
@@ -23,6 +25,6 @@ verification avec un tick toute les 10ns
 
 ![Chronogramme.PNG](Chronogramme.PNG)
 
-pour passer en seconde il suffit de multiplier la valeur cible du conteur par la fréquence d'horloge soit par exemple pour une horloge de 50Mhz:
+pour passer en secondes il suffit de multiplier la valeur cible du conteur par la fréquence d'horloge soit par exemple pour une horloge de 50Mhz:
 - 5s: 250 x10^6 fronts montant
 - 10s: 500 x10^6 fronts montant
