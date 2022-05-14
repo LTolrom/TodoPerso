@@ -1,0 +1,21 @@
+#-----------------------------------------------------------
+# Vivado v2021.2 (64-bit)
+# SW Build 3367213 on Tue Oct 19 02:48:09 MDT 2021
+# IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
+# Start of session at: Sat May 14 17:42:53 2022
+# Process ID: 5428
+# Current directory: D:/leo/TodoPerso/3.FPGA_SOC/Machines_Etats/Feux_tricolore_vhdl
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent2004 D:\leo\TodoPerso\3.FPGA_SOC\Machines_Etats\Feux_tricolore_vhdl\Feux_tricolore_vhdl.xpr
+# Log file: D:/leo/TodoPerso/3.FPGA_SOC/Machines_Etats/Feux_tricolore_vhdl/vivado.log
+# Journal file: D:/leo/TodoPerso/3.FPGA_SOC/Machines_Etats/Feux_tricolore_vhdl\vivado.jou
+# Running On: OrdiBen, OS: Windows, CPU Frequency: 3504 MHz, CPU Physical cores: 4, Host memory: 34317 MB
+#-----------------------------------------------------------
+start_gui
+open_project D:/leo/TodoPerso/3.FPGA_SOC/Machines_Etats/Feux_tricolore_vhdl/Feux_tricolore_vhdl.xpr
+update_compile_order -fileset sources_1
+launch_simulation
+source TestBenchFeux.tcl
+save_wave_config {D:/leo/TodoPerso/3.FPGA_SOC/Machines_Etats/Feux_tricolore_vhdl/TestBenchFeux_behav.wcfg}
+add_files -fileset sim_1 -norecurse D:/leo/TodoPerso/3.FPGA_SOC/Machines_Etats/Feux_tricolore_vhdl/TestBenchFeux_behav.wcfg
+set_property xsim.view D:/leo/TodoPerso/3.FPGA_SOC/Machines_Etats/Feux_tricolore_vhdl/TestBenchFeux_behav.wcfg [get_filesets sim_1]
+close_sim

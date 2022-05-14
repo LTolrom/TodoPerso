@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../Feux_tricolore_vhdl.srcs/sources_1/new/FeuxTricolore.vhd" \
+"../../../../Feux_tricolore_vhdl.srcs/sim_1/new/TestBenchFeux.vhd" \
+
+# Do not sort compile order
+nosort
