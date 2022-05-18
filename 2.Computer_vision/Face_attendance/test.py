@@ -18,7 +18,7 @@ def increase_value():
     print("ok")
 
 
-
+sdqzdq
 
 canvas1 = tk.Canvas(root, width = 400, height = 300)
 canvas1.pack()
