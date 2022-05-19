@@ -106,8 +106,9 @@ while True:
             markAttendance(name)
         else:      
             cv2.putText(img,'Unknow',(x2+6,y2-6),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),2)# si pas de matches= unknow
-            cv2.putText(img,'press e for encoding',(x1+6,y1+15),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1)
-            cv2.putText(img,'then answer to the console',(x1+6,y1+50),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1)
+            cv2.putText(img,'look at the cam then',(x1+6,y1+15),cv2.FONT_HERSHEY_COMPLEX,0.5,(255,255,255),1)
+            cv2.putText(img,'press "e" for encoding',(x1+6,y1+40),cv2.FONT_HERSHEY_COMPLEX,0.5,(255,255,255),1)
+            cv2.putText(img,'then answer to the console',(x1+6,y1+65),cv2.FONT_HERSHEY_COMPLEX,0.5,(255,255,255),1)
 
 
     
