@@ -4,6 +4,7 @@ import face_recognition
 import os
 from datetime import  datetime
 import time
+
 path ='data/LeoTrain'
 images = []
 classNames = []
@@ -77,13 +78,4 @@ while True:
     cv2.imshow('Webcam',img)
     cv2.waitKey(1)
 
-# faceLoc= face_recognition.face_locations(imgLeo)[0] #face_location retourne quatre valeurs (top,right,bottom,left)
-# encodeLeo= face_recognition.face_encodings(imgLeo)[0]
-# cv2.rectangle(imgLeo,(faceLoc[3],faceLoc[0]),(faceLoc[1],faceLoc[2]),(255,0,255),2)
 
-# faceLocTest = face_recognition.face_locations(imgTest)[0] #face_location retourne quatre valeurs (top,right,bottom,left)
-# encodeLeoTest= face_recognition.face_encodings(imgTest)[0]
-# cv2.rectangle(imgTest,(faceLocTest[3],faceLocTest[0]),(faceLocTest[1],faceLocTest[2]),(255,0,255),2)
-
-# results = face_recognition.compare_faces([encodeLeo],encodeLeoTest)
-# faceDis = face_recognition.face_distance([encodeLeo],encodeLeoTest)
