@@ -1,3 +1,7 @@
+L'OS installé est le jetpack 4.6, build par NVIDIA spécifiquement pour les jetsons.
+
+
+
 Configuration:
 
 -Update & upgrade
