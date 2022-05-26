@@ -7,7 +7,7 @@ import math
 class poseDetector():
  
     def __init__(self, mode=False, upBody=False, smooth=True,modelComplex=0.5,
-                 detectionCon=0.5, trackCon=0.8):
+                 detectionCon=0.5, trackCon=0.5):
  
         self.mode = mode
         self.upBody = upBody

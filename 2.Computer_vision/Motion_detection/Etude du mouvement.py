@@ -1,19 +1,19 @@
 
 import cv2
-import numpy as np
 import time
 import PoseModule as pm
 import matplotlib.pyplot as plt 
 
 
-cap = cv2.VideoCapture("PoseVideos/Marche_plan_lateral.mp4")
- 
 detector = pm.poseDetector()
-count = 0
-dir = 0
+##Setup affichage des fps
 pTime = 0
-Tick=0
-
+##Setup variable axe x
+tick=0
+xtime=0
+x=[]
+##Setup variable axe y
+angles={}
 dict_articulation={"poignet droit": (18,16,14),
             "poignet gauche":(17,15,13),
             "coude droit":(16,14,12),
@@ -24,36 +24,40 @@ dict_articulation={"poignet droit": (18,16,14),
             "hanche gauche":(11,23,25),
             "genou droit":(24,26,28),
             "genou gauche":(23,25,27),
-            "chevile droite":(26,28,30),
-            "chevile gauche":(25,27,29)}
-articulation_analyse=("genou droit","genou gauche")
-shared_dict=[]
-angles={}
-for i in articulation_analyse:
-    if (i in dict_articulation.keys()):
-        shared_dict.append(i)
+            "cheville droite":(26,28,30),
+            "cheville gauche":(25,27,29)}
+
+##Choix des articulation à analyser
+articulation_analyse=("hanche droite","hanche gauche", "genou droit","genou gauche","cheville droite","cheville gauche")
+
+for i in dict_articulation.keys():
+    if (i in articulation_analyse):
+        angles[i]=[]
+
+#choix du media
+cap = cv2.VideoCapture("PoseVideos/Marche_plan_lateral.mp4")
 
 def get_angles():
-    for i in shared_dict:
-        angles[i].append(detector.findAngle(img, dict_articulation[i][0], dict_articulation[i][1], dict_articulation[i][2]))
+    for i in angles:
+        angles[i].append((detector.findAngle(img, dict_articulation[i][0], dict_articulation[i][1], dict_articulation[i][2])))
     
-    return angles
-
-
 
 def moyenne_glissante(valeurs, intervalle):
     indice_debut = (intervalle - 1) // 2
     liste_moyennes = [sum(valeurs[i - indice_debut:i + indice_debut + 1]) / intervalle for i in range(indice_debut, len(valeurs) - indice_debut)]
     return liste_moyennes
 
-x_time=0
-x=[]
-y_HD=[]
-y_HG=[]
-y_GD=[]
-y_GG=[]
-y_CD=[]
-y_CG=[]
+def plot_angles(x,angles,largeur,hauteur,n_hauteur,n_largeur):
+    fig = plt.figure(figsize=(largeur,hauteur))
+    n_plot=0
+    for i in angles:
+        n_plot=n_plot+1
+        fig.add_subplot(n_hauteur,n_largeur,n_plot)
+        plt.title (i)
+        plt.plot(x[1:-1],moyenne_glissante(angles[i],3)) #si on veut changer l'intervalle de la moyenne glissante il faut adapter l'intervalle de x
+
+
+
 
 
 while True:
@@ -61,22 +65,18 @@ while True:
     if not success:
         break
     img = cv2.resize(img, (1280, 720))
-    # img = cv2.imread("AiTrainer/test.jpg")
     img = detector.findPose(img, False)
     lmList = detector.findPosition(img, False)
 
     if len(lmList) != 0:
+            if time.time()-xtime>0.1:
+                xtime=time.time()
+                get_angles()
+                tick=tick+0.1
+                x.append(tick)
 
-       print(get_angles())
     
-    Tick=Tick+1
-    x.append(Tick)
-    # y_HD.append(angle_HD)
-    # y_HG.append(angle_HG)
-    # y_GD.append(angle_GD)
-    # y_GG.append(angle_GG)
-    # y_CD.append(angle_CD)
-    # y_CG.append(angle_CG) 
+    
 
  
     cTime = time.time()
@@ -93,33 +93,7 @@ while True:
 
 cap.release()
 cv2.destroyAllWindows()
-# fig = plt.figure(figsize=(12,12))
 
-# fig.add_subplot(3,2,1)
-# plt.title ("Amplitude Hanche droite")
-# #plt.plot(x, y_HD)
-# plt.plot(x[1:-1],moyenne_glissante(y_HD,3))
-# fig.add_subplot(3,2,2)
-# plt.title ("Amplitude Hanche Gauche")
-# plt.plot(x[1:-1],moyenne_glissante(y_HG,3))
-# #qqqqqplt.plot(x, y_HG)
-
-# fig.add_subplot(3,2,3)
-# plt.title ("Amplitude genou droit")
-# plt.plot(x[1:-1],moyenne_glissante(y_GD,3))
-# #plt.plot(x, y_GD)
-# fig.add_subplot(3,2,4)
-# plt.title ("Amplitude genou gauche")
-# plt.plot(x[1:-1],moyenne_glissante(y_GG,3))
-# #plt.plot(x, y_GG)
-
-# fig.add_subplot(3,2,5)
-# plt.title ("Amplitude cheville droite")
-# plt.plot(x[1:-1],moyenne_glissante(y_CD,3))
-# #plt.plot(x, y_CD)
-# fig.add_subplot(3,2,6)
-# plt.title ("Amplitude cheville gauche")
-# plt.plot(x[1:-1],moyenne_glissante(y_CG,3))
-# #plt.plot(x, y_CG)
+plot_angles(x,angles,12,12,3,2)
 
 plt.show()
