@@ -6,19 +6,19 @@ import math
  
 class poseDetector():
  
-    def __init__(self, mode=False, upBody=False, smooth=True,modelComplex=0.5,
-                 detectionCon=0.5, trackCon=0.5):
+    def __init__(self, mode=False, upBody=False, smooth=True,
+                 detectionCon=0.5, trackCon=0.5): #si mediapipe a été installé directement avec pip(ce qui n'est pas possible sur la jetson) alors un argument est à rajouter
  
         self.mode = mode
         self.upBody = upBody
         self.smooth = smooth
         self.detectionCon = detectionCon
         self.trackCon = trackCon
-        self.modelComplex=modelComplex
+        
  
         self.mpDraw = mp.solutions.drawing_utils
         self.mpPose = mp.solutions.pose
-        self.pose = self.mpPose.Pose(self.mode, self.upBody,self.modelComplex, self.smooth,
+        self.pose = self.mpPose.Pose(self.mode, self.upBody, self.smooth,
                                      self.detectionCon, self.trackCon)
  
     def findPose(self, img, draw=True):

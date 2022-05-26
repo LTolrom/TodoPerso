@@ -69,10 +69,10 @@ while True:
     lmList = detector.findPosition(img, False)
 
     if len(lmList) != 0:
-            if time.time()-xtime>0.1:
+            if time.time()-xtime>0.05:
                 xtime=time.time()
                 get_angles()
-                tick=tick+0.1
+                tick=tick+0.05
                 x.append(tick)
 
     
