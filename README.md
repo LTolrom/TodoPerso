@@ -16,5 +16,8 @@ Réalisé sur la jetson xavier NX (carte qui sera utilisée pendant le M2). Comm
 
 Réalisé sur une Zybo Z7020, je suis très fan des FPGA pour leurs polyvalences, leurs efficiences (en terme de puissance, contrainte temporel et consommation énergétique) ainsi que de devoir travailler à un faible niveau d'abstraction et donc comprendre l'électronique numérique bit par bit. En fpga/VHDL je pense coder quelques machines à état et faire de la description de code déja existant (genre protocole de com série UART,i²C,SPI,CAN)
 
+**[UPDATE]**
+Je me concentre maintenant sur un projet académique, l'implémentation d'un algorithme d'un support vector machine en utilisant la méthode du gradient de descente stochastique. Ce projet ce base sur [cet](lopes2019.pdf) article. J'ai fait le choix de faire mon implémentation en high level synthesis (HLS), cela me permet d'expérimenter une méthode que je connais moins, et qui est particulièrement désignée pour faire du machine learning sur FPGA.
+
 
 ![PI+Jet+Zyb](https://user-images.githubusercontent.com/94114676/166684215-9302ad22-f1e8-4103-8958-482a12fbe210.jpg)
