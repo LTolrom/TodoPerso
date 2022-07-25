@@ -2,7 +2,7 @@ Projet IOT:
 **Work in progress**
 
 
-Pour Broker MQTT sur raspberry pi
+Pour Broker MQTT sur raspberry pi:
 
 
 *Mosquitto: Mosquitto permet de créer facilement des broker MQTT.*
